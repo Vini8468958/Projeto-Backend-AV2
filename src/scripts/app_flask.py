@@ -56,6 +56,8 @@ def index():
 
 if __name__ == '__main__':
     # Garante que o banco de dados está no diretório correto
+    # Para que o diretório funcione de forma universal em Windows, Linux e Mac
     import os
-    os.chdir('/home/ubuntu/app_flask_project')
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(BASE_DIR)
     app.run(host='0.0.0.0', port=5000, debug=True)
