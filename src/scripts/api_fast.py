@@ -10,7 +10,7 @@ import sqlite3
 app = FastAPI()
 
 def get_db():
-    conn = sqlite3.connect('biblioteca.db')
+    conn = sqlite3.connect('src/data/biblioteca.db')
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -23,7 +23,7 @@ class Livro(BaseModel):
     titulo: str
     autor: str
     ano_publicacao: int
-    disponivel: bool
+    disponivel: bool = True
 
 # Essa parte aqui captura a lista de livros do banco de dados e retorna em formato JSON. Executando o Select e pegando todos os resultados com fetchall()m retorna em um dicionário, o que nos permite que a aplicação façça requisições HTTP para obter a lista de livros cadastrados no banco de dados.
 

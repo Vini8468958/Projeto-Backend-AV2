@@ -50,6 +50,7 @@
                         <th>Autor</th>
                         <th>Ano</th>
                         <th>Disponível</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +65,11 @@
                             {% else %}
                                 <span class="indisponivel">Não</span>
                             {% endif %}
+                        </td>
+                        <td>
+                            <form method="POST" action="{{ url_for('deletar_livro', livro_id=livro.id) }}" style="display:inline;">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir o livro: {{ livro.titulo }}?')" style="background-color: #d9534f; color: white; padding: 5px 10px; border: none; border-radius: 4px; cursor: pointer;">Excluir</button>
+                            </form>
                         </td>
                     </tr>
                     {% endfor %}

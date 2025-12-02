@@ -1,9 +1,15 @@
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, g
+import os
 
 # Configuração
-DATABASE = 'biblioteca.db'
-app = Flask(__name__)
+DATABASE = 'src/data/biblioteca.db'
+# Define o caminho absoluto para a pasta 'templates'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..', '..'))
+TEMPLATE_FOLDER = os.path.join(PROJECT_ROOT, 'templates')
+
+app = Flask(__name__, template_folder=TEMPLATE_FOLDER)
 app.config['SECRET_KEY'] = 'uma_chave_secreta_muito_segura' # Necessário para o Flask
 
 # Função para obter a conexão com o banco de dados
@@ -54,10 +60,19 @@ def index():
     
     return render_template('index.html', livros=livros)
 
+
+@app.route('/deletar/<int:livro_id>', methods=['POST'])
+def deletar_livro(livro_id):
+    db = get_db()
+    try:
+        cursor = db.cursor()
+        cursor.execute("DELETE FROM livros WHERE id = ?", (livro_id,))
+        db.commit()
+    except sqlite3.Error as e:
+        print(f"Erro ao deletar livro: {e}")
+    
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
-    # Garante que o banco de dados está no diretório correto
-    # Para que o diretório funcione de forma universal em Windows, Linux e Mac
-    import os
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(BASE_DIR)
+    # O caminho do banco de dados já está corrigido acima.
     app.run(host='0.0.0.0', port=5000, debug=True)
