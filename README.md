@@ -4,7 +4,6 @@ Uma aplicação backend completa utilizando Flask e FastAPI, aplicando os concei
 e conexão com banco de dados relacional, simulando um ambiente real de desenvolvimento de 
 um sistema simples de cadastro de livros para uma biblioteca universitária.
 
-
 ## Visão Geral
 
 O projeto utiliza um banco de dados SQLite chamado biblioteca.db, responsável por armazenar as informações dos livros cadastrados no sistema.
@@ -110,6 +109,34 @@ Abra no seu navegador:
 ```
 http://127.0.0.1:5000/
 ```
+## API FastAPI
+
+### PIPS !
+
+Tive que atualizar o pip para conseguir instalar o fastapi, não sei se alguém mais teve esse problema, mas segue a linha de comando: 
+```
+python.exe -m pip install --upgrade pip
+pip install flask
+pip install fastapi
+pip install uvicorn
+```
+Uma breve explicação da API e sua aplicação neste código.
+
+O fluxo lógico começa com os imports, precisamos importar as ferramentas para que possamos utilizá-las no código, ferramentas como FastAPI, HTTPException, status, BaseModel do pydantic e o sqlite3, esses kits disponibilizam ótimas ferramentas para manipulação de dados, isto é, para conexão, troca de dados e validação destes.
+
+Declaramos uma função de conexão com o banco de dados, onde colocamos seu endereço, essa função é importante para que possamos fazer nossas requisições HTTP e manipulação CRUD. Declaramos também um modelo base para que haja uma validação de dados, isso evitará conflitos e problemas lógicos e/ou hábitos ruins na hora de constituirmos e realizarmos atualizações e manipulações em nosso banco de dados. Essas duas declarações são cruciais para a lógica do código como um todo, pois aqui colocamos uma restrição e estabelecemos uma conexão para que:
+
+* Método get(todo o banco) - Fazemos um endpoint aqui onde, uma vez conectado ao banco de dados, utilizamos o método get, por meio do "SELECT * FROM livros" e pegamos toda a lista, armazenando num dictionary
+
+* Método get by id - Uma vez que temos a lista inteira, podemos aplicar, aqui, um filtro por ID, o que significa que agora podemos fazer uma pesquisa mais específica.
+
+* Método post - Aqui o basemodel é utilizado para validação dos dados inseridos, já que estamos falando de um método de inserção de dados, que consiste, basicamente, em duas partes, uma na qual o usuário insere o livrro seguindo o modelo base e, uma vez que os dados são validados, ele atualiza o db e retorna o novo livro, mas desta vez com o id.
+
+* Método put - Esse método atualiza os livros já existentes, não se tratando de uma inserção de dados mas uma mudança de dados, onde o processo envolve verificação de existencia, e caso haja o livro, uma troca dos dados, sendo título, autor, ano_publicacao e disponibilidade, sendo str, str, int e bool respectivamente, e logo após isso, uma confirmação, uma busca pelo livro atualizado e busca por erros.
+
+* Método delete - Esse método remove do banco o registro correspondente ao Id, havendo também uma verificação de existencia para que prossiga em sua ação.
+
+Vale ressaltar que, nos métodos, temos também linhas que estabelecem uma comunicação diante dos erros, isto é, quando um método tem problemas de conexão, é retornado um código referente ao seu erro, e que a `Fast API` roda na `porta 8000`!
 
 ## Colaboradores
 
@@ -122,4 +149,5 @@ Projeto desenvolvido por:
 * [Maria Carolina Bezerra Melo](https://github.com/Carol-Melo22) - 01837312
 * [Raphael Guedes Corrêa](https://github.com/raphaelgc2004) - 01746290
 * [Vinícius Barbosa de Figueirêdo](https://github.com/Vini8468958) - 01726804
+
 
