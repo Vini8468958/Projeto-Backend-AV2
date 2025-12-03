@@ -1,12 +1,15 @@
+# -> Aqui é feita a importação do sqlite e do modulo path 
 import sqlite3
 from pathlib import Path
 
-DB_PATH = Path(__file__).resolve().parents[1] / "data" / "biblioteca.db"
+DB_PATH = Path(__file__).resolve().parents[1] / "data" / "biblioteca.db" #-> linha que monta automaticamente o caminho ate arquivo biblioteca. 
 DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 
+#-> É aberto a conexão com o banco de dados e criado o cursor
 conn = sqlite3.connect(DB_PATH)
 cur = conn.cursor()
 
+# -> nesse bloco é executado a crição da tabela livros 
 cur.execute("""
 CREATE TABLE IF NOT EXISTS livros (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,6 +20,7 @@ CREATE TABLE IF NOT EXISTS livros (
 )
 """)
 
+# -> aqui é verificado se a tabela esta vazia 
 cur.execute("SELECT COUNT(1) FROM livros")
 count = cur.fetchone()[0]
 
@@ -31,6 +35,7 @@ if count == 0:
         ("O Alienista", "Machado de Assis", 1882, 0)
     ])
 
+# -> aqui eu faço commit da aletrações e fecho a conexão do banco de dados 
 conn.commit()
 conn.close()
 
