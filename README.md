@@ -148,10 +148,11 @@ Projeto desenvolvido por:
 * [Alex Campos Ferreira Chaves](https://github.com/AlexCampos265) - 01690931
 * [Aquiles de Melo Albuquerque](https://github.com/Aquiles-adm) - 01725424
 * [Lucas Rafael Santana Santos de Holanda](https://github.com/LucasHolanda23) - 01734128
-* [Matheus Heralio Monteiro dos Santos](https://github.com/Matheus-Heraclio) - 01687149
+* [Matheus Heraclio Monteiro dos Santos](https://github.com/Matheus-Heraclio) - 01687149
 * [Maria Carolina Bezerra Melo](https://github.com/Carol-Melo22) - 01837312
 * [Raphael Guedes Corrêa](https://github.com/raphaelgc2004) - 01746290
 * [Vinícius Barbosa de Figueirêdo](https://github.com/Vini8468958) - 01726804
+
 
 
 
