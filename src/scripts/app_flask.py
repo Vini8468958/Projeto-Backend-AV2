@@ -1,8 +1,10 @@
+# Importa as bibliotecas necessárias: sqlite3 para interagir com o banco de dados, flask para construir a aplicação web e os 
+
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, g
 import os
 
-# Configuração
+# Configuração da Aplicação: Define o caminho para o arquivo do banco de dados (DATABASE)
 DATABASE = 'src/data/biblioteca.db'
 # Define o caminho absoluto para a pasta 'templates'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -60,7 +62,7 @@ def index():
     
     return render_template('index.html', livros=livros)
 
-
+# Rota para deletar um livro
 @app.route('/deletar/<int:livro_id>', methods=['POST'])
 def deletar_livro(livro_id):
     db = get_db()
@@ -74,5 +76,5 @@ def deletar_livro(livro_id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    # O caminho do banco de dados já está corrigido acima.
+    # O caminho do banco de dados 
     app.run(host='0.0.0.0', port=5000, debug=True)
