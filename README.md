@@ -11,7 +11,7 @@ O projeto utiliza um banco de dados SQLite chamado biblioteca.db, responsável p
 Todo o CRUD do projeto (Flask ou FastAPI) utiliza este banco como fonte de dados.
 
 Local do Banco
-
 O arquivo do banco está em:
 src/data/biblioteca.db
+
 
