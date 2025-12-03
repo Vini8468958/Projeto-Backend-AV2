@@ -109,6 +109,9 @@ Abra no seu navegador:
 ```
 http://127.0.0.1:5000/
 ```
+
+Importante ressaltar que a `Aplicação Flask` roda na `porta 5000`!
+
 ## API FastAPI
 
 ### PIPS !
@@ -149,5 +152,6 @@ Projeto desenvolvido por:
 * [Maria Carolina Bezerra Melo](https://github.com/Carol-Melo22) - 01837312
 * [Raphael Guedes Corrêa](https://github.com/raphaelgc2004) - 01746290
 * [Vinícius Barbosa de Figueirêdo](https://github.com/Vini8468958) - 01726804
+
 
 
